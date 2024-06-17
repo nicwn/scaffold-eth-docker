@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  scaffold-eth-2:
+    container_name: scaffold-eth-2
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./scaffold-eth-2:/usr/src/app
+    stdin_open: true
+    tty: true
