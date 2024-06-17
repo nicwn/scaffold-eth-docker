@@ -1,12 +1,12 @@
-version: '3.8'
-
 services:
   scaffold-eth-2:
-    container_name: scaffold-eth-2
+    container_name: scaffold-eth-2 # Change this name for your app
     build: .
     ports:
       - "3000:3000"
+      - "8584:8545"
     volumes:
-      - ./scaffold-eth-2:/usr/src/app
+      - "$PWD/scaffold-eth-2:/usr/src/app" # Create bind volume between local scaffold-eth-2 and container app folder
     stdin_open: true
     tty: true
+    working_dir: /usr/src/app

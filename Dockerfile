@@ -1,8 +1,8 @@
 # Use the official Node.js 20 image
 FROM node:20-alpine
 
-# Install git
-RUN apk add --no-cache git
+# Install git and bash
+RUN apk add --no-cache git bash
 
 # Enable Corepack which includes Yarn
 RUN corepack enable
@@ -11,16 +11,17 @@ RUN corepack enable
 WORKDIR /usr/src/app
 
 # Copy package.json and yarn.lock if they exist
-COPY package.json yarn.lock ./
+COPY scaffold-eth-2/package.json scaffold-eth-2/yarn.lock ./
 
 # Install dependencies using yarn
 RUN yarn install
 
 # Copy the rest of the application
-COPY . .
+COPY scaffold-eth-2/ .
 
-# Expose the port Scaffold-ETH-2 uses
+# Expose the ports used by Scaffold-ETH-2
 EXPOSE 3000
+EXPOSE 8545
 
-# Command to run the development server
-CMD ["yarn", "dev"]
+# Default command
+CMD ["yarn", "chain"]
